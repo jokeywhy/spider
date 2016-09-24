@@ -1,0 +1,118 @@
+<script language="javascript1.2">
+function save()
+{
+	 if(!$('#editform').valid())
+		return;
+	 if(($("#id").val()=="") && ($("#e_pw").val()==""))
+	 {
+		 alert("密码不能为空");
+		 return false;
+	 }
+	 if( $("#e_pw").val()!= $("#e_pw2").val())
+	 {
+		 alert("两次密码输入不一致");
+		 return false;
+	 }
+		$('#editform').ajaxForm({
+	        dataType:'json',
+       		success:function(data) {
+				if(data.success=="insert")
+				{
+					$("#id").val(data.id);
+					$("#e_alias").val(data.e_alias);
+					$("<span>"+data.e_alias+"</span>").insertAfter($("#e_alias"));
+					$("#e_alias").hide();
+					updatestruct();
+				}
+				if(data.signurl!="")
+					$("#signpic").attr("src",data.signurl);
+				$().message(data.msg);
+			}
+    	});
+
+		$('#editform').submit();
+}
+$(function(){
+	$(".multiselect").multiselect();
+});
+
+$(document).ready(function(){
+ $(".chzn-select").chosen();
+	if($("#e_disk").val()=="")$("#e_disk").val("300");
+});
+</script>
+<div id="topNavWrapper">
+<div class="jd_menu" id="topNav">
+    <div id="topbarmain">
+        	<div class="btnmenu" onclick="edit_dept(1011)"><div class="icon"><img src="/pc/images/icon/return.png" /></div><div class="text">返回</div></div>
+     </div>
+</div>
+</div>
+<div id="contentdiv">
+<form name="editform" method = "post" id = "editform" action="/sysman/structure/edit_user.shtml?action=ok" enctype="multipart/form-data">
+<table width="100%" class="tablist" >
+   <tbody>
+   <tr style="display:none">
+	<td  align="right">用户ID:&nbsp;</td>
+    <td >
+     <span></span>
+	</td>
+</tr>
+
+<tr>
+	<td style="width:18%;" class="thtitle">用户名:&nbsp;</td>
+    <td style="width:82%;">
+    	<input type="hidden" id="id" name="id" maxlength="40" style='width:200px;'  value="991" >
+		<span>
+                <input maxlength="40" style='width:200px;' id="e_alias" name="e_alias"  type="hidden" class="required" value="wangfeng" /> wangfeng        </span>
+	</td>
+</tr>
+<tr>
+	<td style="width:18%;" class="thtitle">工资编号:&nbsp;</td>
+    <td style="width:82%;">
+		<span>
+                <input maxlength="40" style='width:200px;' id="xh" name="xh"  type="hidden" class="required" value="301009" /> 301009        </span>
+	</td>
+</tr>
+<tr>
+	<td class="thtitle">姓名:&nbsp;</td>
+    <td>
+		<span>汪枫 </span>
+	</td>
+</tr>
+<tr>
+	<td class="thtitle">职务:&nbsp;</td>
+    <td>
+		<span>党委书记 </span>
+	</td>
+</tr>
+<tr>
+	<td class="thtitle">E-mail:&nbsp;</td>
+    <td>
+		<span>汪枫 </span>
+	</td>
+</tr>
+
+<tr>
+	<td class="thtitle">办公电话:&nbsp;</td>
+    <td >
+		<span> </span>
+	</td>
+
+</tr>
+<tr>
+	<td class="thtitle">手机:&nbsp;</td>
+    <td >
+		<span> </span>
+	</td>
+</tr>
+<tr>
+	<td class="thtitle">单位定义:&nbsp;</td>
+    <td >
+		<span>校领导</td>
+</tr>
+
+</tbody></table>
+</form>
+
+</div>

@@ -29,7 +29,7 @@ class GoogleSpider(object):
         # response = etree.tostring(html)
         mytool = tool.Tool()
         response = mytool.replace(response.encode('utf-8'))
-        gSpider.getSoup(response, url)
+        self.getSoup(response, url)
 
 
     def threadherf(self, htmlherf):

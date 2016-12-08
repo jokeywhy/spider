@@ -11,7 +11,7 @@ class EmailConf(object):
         self.host = 'smtp.qq.com'
         self.port = 465
         self.user = '2469763120@qq.com'
-        self.pwd = 'ffvhauxlliliecgh'
+        self.pwd = 'lhoqzoxbpnyteajj'
         self.receiver = ['425317014@qq.com']
         self.s = smtplib.SMTP_SSL(self.host, self.port)
         self.s.login(self.user, self.pwd)

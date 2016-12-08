@@ -37,13 +37,13 @@ def request_post():
 
 # cookie包含
 def request_cookie():
-    url = 'http://example.com'
+    url = 'http://www.baidu.com'
     r = requests.get(url)
     # 包含cookie
-    cookie = dict(cookies_are='working')
+    cookie = dict(cookies_are='working', cc='cccc')
     r = requests.get(url, cookies=cookie)
-    print r.cookies
-    print r.cookies['example_cookie_name']
+    print cookie
+    # print r.cookies['example_cookie_name']
 
 # 会话
 def rquest_session():
@@ -69,9 +69,11 @@ def request_proxy():
         "http": "http://127.0.0.1:1080",
         "https": "http://127.0.0.1:1080",
     }
-    r = requests.post("http://httpbin.org/post", proxies=proxies)
+    # r = requests.post("http://httpbin.org/post", proxies=proxies)
+    r = requests.post("https://www.google.com", proxies=proxies)
     print r.text
 
 if __name__ == '__main__':
     # request_ssl()
-    request_proxy()
+    # request_proxy()
+    request_cookie()
